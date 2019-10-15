@@ -44,11 +44,8 @@ int main() {
                 cout << "Szukane słowo: ";
                 cin >> query;
                 resp = d.find(query);
-                if (resp.first) {
-                    cout << resp.second << endl;
-                } else {
-                    cout << "nie ma takiego słowa" << endl;
-                }
+                if (resp.first) cout << resp.second << endl;
+                           else cout << "nie ma takiego słowa" << endl;
                 break;
 
             // enter wczytywany co drugi znak 
