@@ -8,7 +8,7 @@ class stack {
     std::string top() { 
         return (this->values.size() == 0) 
                     ? "-- empty --" 
-                    : *(this->values.rbegin()); 
+                    : this->values.back(); 
     }
     void push(std::string val) { this->values.push_back(val); }
     std::string pop() {
