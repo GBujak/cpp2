@@ -7,7 +7,6 @@ using namespace std;
 class student {
     string name;
     string surname;
-    friend student scan_student();
 public:
     student(string name, string surname)
         : name(name), surname(surname) {}
@@ -15,7 +14,7 @@ public:
 
     // Bez tego nie można umieszczać elementów w zbiorze bo elementy zbioru są
     // posortowane, więc musi dać się je porównać
-    bool operator<(const student& other) const {
+    bool operator < (const student& other) const {
         return surname < other.surname;
     };
 
@@ -23,12 +22,14 @@ public:
 };
 
 student scan_student() {
-    student s;
-    cout << "Imię: ";
-    cin >> s.name;
-    cout << "Nazwisko: ";
-    cin >> s.surname;
-    return s;
+    std::string name, surname;
+    std::cout << "Imię: ";
+    std::cin >> name;
+    std::cout << "Nazwisko: ";
+    std::cin >> surname;
+    return { name, surname }; // Nie trzeba wywoływać konstruktora student,
+                              // kompilator sam to wywnioskuje z prototypu
+                              // funkcji (typu wartości zwracanej)
 }
 
 int main(void) {

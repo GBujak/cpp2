@@ -13,15 +13,22 @@ class dictionary {
         cout << "angielski: "; cin >> eng;
         cout << "polski: ";    cin >> pol;
         dict[eng] = pol;
+        // Operator [] na mapie konstruuje nową zmienną typu przechowy-
+        // wanego w mapie i zwraca do niej referencję -> zmienia mapę !!!
     }
     void print() {
         for (auto i : dict)
-            cout << get<0>(i) << " -> "
-                 << get<1>(i) << endl;
+            cout << i.first  << " -> "
+                 << i.second << endl;
     }
     pair<bool, string> find(const string& eng) const {
-        if (dict.find(eng) == dict.end()) return { false, "" };
+        if (dict.find(eng) == dict.end()) 
+            return { false, "" };
+        // Metoda find zwraca iterator końcowy, gdy nie znajdzie podanej
+        // wartości w mapie
         else return { true, dict.at(eng) };
+        // Wywołanie metody "at" z kluczem, pod którym nie ma wartości
+        // powoduje wyjątek -> wysypuje program
     }
 };
 
@@ -48,13 +55,12 @@ int main() {
                            else cout << "nie ma takiego słowa" << endl;
                 break;
 
-            // enter wczytywany co drugi znak 
             case '\n': break;
+            // enter wczytywany co drugi znak 
 
             default:
                 cout << "exiting" << endl;
                 exit(0);
-                break;
         }
     }
 }
