@@ -1,55 +1,40 @@
 #include <iostream>
-#include <random>
+#include <vector>
+#include <utility>
+
 using namespace std;
 
-template <class T>
-void print_arr(T* arr, int size);
-
-template <class T>
-void _swap(T& a, T& b) {
-    T tmp = b;
-    b = a;
-    a = tmp;
-}
-
-template <class T>
-void bubblesort(T* array, int size) {
-    bool changes = false;
-    do {
+template <typename T>
+void bubblesort(vector<T>& vec) {
+    bool changes = true;
+    while (changes) {
         changes = false;
-        for (int i = 1; i < size; i++) {
-            if ( array[i-1] > array[i] ) {
-                _swap<T>(array[i-1], array[i]);
+        for (auto it = vec.begin(); it != vec.end() - 1; it++) {
+            if (*it > *(it + 1)) {
+                swap(*it, *(it + 1));
                 changes = true;
-                // print_arr(array, size);
             }
         }
-    } while (changes);
+    }
 }
 
-template <class T>
-void print_arr(T* arr, int size) {
-    cout << "[ ";
-    for (int i = 0; i < size; i++)
-        cout << arr[i] << ' ';
-    cout << "]" << endl;
+template <typename T>
+void insertionsort(vector<T>& vec) {
+    typename vector<T>::iterator j;
+    for (auto i = vec.begin()+1; i != vec.end(); i++) {
+        auto temp = *i;
+        for (j = i - 1; j != vec.begin() - 1 && *j > temp; j--)
+            *(j + 1) = *j;
+        *(j + 1) = temp;
+    }
 }
 
-std::random_device r;
-int main(void) {
-    constexpr int size = 20;
-    auto arr = new int[size];
-    for (int i = 0; i < size; i++)
-        arr[i] = r() % 100;
-    print_arr(arr, size);
-    bubblesort<int>(arr, size);
-    print_arr(arr, size);
-    delete[] arr;
+int main() {
+    vector<int> vec = {23, 43, 346, 657, 12, 1, 65, 89, 2};
+    bubblesort(vec);
+    for (auto i: vec) cout << i << ", "; cout << endl;
 
-    auto arrf = new float[size];
-    for (int i = 0; i < size; i++)
-        arrf[i] = (r() % 100) / 100.0f;
-    print_arr(arrf, size);
-    bubblesort(arrf, size);
-    print_arr(arrf, size);
+    vector<int> vec2 = {23, 43, 346, 657, 12, 1, 65, 89, 2};
+    insertionsort(vec2);
+    for (auto i: vec2) cout << i << ", "; cout << endl;
 }
