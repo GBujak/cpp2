@@ -13,7 +13,11 @@ class vec3d {
         else return true;
     }
     bool operator!=(const vec3d& other) const {
-        return !(*this == other);
+        return !(*this == other); // dereferencja wskaźnika "this" -
+                                  // operator "==" nie spodziewa się
+                                  // wskaźnika, tylko wartości
+                                  // można to też zrobić:
+                                  // !this->operator==(other);
     }
 };
 

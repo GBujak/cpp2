@@ -8,7 +8,7 @@ class string_container {
     string_container(string val)
         : val(val) {}
     string_container(const string_container& other)
-        : val(other.val) {}
+        : val(other.val) {} // konstruktor zostanie wywołany przy przypisaniu (=)
     string& get() { return val; }
 };
 

@@ -13,7 +13,7 @@ class ulamek {
     public:
     ulamek(int licznik, int mianownik)
         : licznik(licznik), mianownik(mianownik) {}
-    ulamek shortened() const {
+    ulamek shortened() const { // skracanie ułamka
         auto gcd_val = gcd(licznik, mianownik);
         return { licznik / gcd_val, mianownik / gcd_val };
     }
@@ -28,7 +28,8 @@ ulamek operator * (const ulamek& first, const ulamek& second) {
     return ulamek { 
         first.licznik * second.licznik,
         first.mianownik * second.mianownik 
-    }.shortened();
+    }.shortened(); // wywołanie metody obiektu tymczasowego
+                   // - nie przypisanego do żadnej zmiennej
 }
 
 int main() {

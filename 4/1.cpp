@@ -21,6 +21,6 @@ class vec2d {
 int main() {
     vec2d vec1 = {5, 10};
     auto vec2 = vec1 + vec2d{12, 453};
-    vec2 = vec2 - vec2d{12, 451};
+    vec2 = vec2 - vec2d{12, 451}; // nie można użyć -= bo to inny operator
     vec2.print();
 }
