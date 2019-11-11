@@ -2,20 +2,23 @@
 #include <string>
 using namespace std;
 
-class string_container {
-    string val;
+class time_class {
+    unsigned hour, minute, second;
     public:
-    string_container(string val)
-        : val(val) {}
-    string_container(const string_container& other)
-        : val(other.val) {} // konstruktor zostanie wywołany przy przypisaniu (=)
-    string& get() { return val; }
+    time_class(unsigned hour, unsigned minute, unsigned second)
+        : hour(hour), minute(minute), second(second) {}
+    time_class(const time_class& other)
+        : hour(other.hour), minute(other.minute), second(other.second) {}
+                    // konstruktor zostanie wywołany przy przypisaniu (=)
+    void print() {
+        cout << hour << ':' << minute << ':' << second << endl;
+    }
 };
 
 int main() {
-    string_container cont1{"test"};
-    string_container cont2 = cont1;
-    cont1.get() = "Hello";
-    cout << "cont1: " << cont1.get() << endl;
-    cout << "cont2: " << cont2.get() << endl; // string został skopiowany - wartości się różnią
+    time_class cont1{12, 22, 00};
+    time_class cont2 = cont1;
+    cont1 = time_class{14, 53, 12};
+    cont1.print();
+    cont2.print();
 }
