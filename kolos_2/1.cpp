@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+void sprawdz_ilosc_kamizelek(int kamizelki, int kajakarze) {
+    if (kamizelki < kajakarze) throw kajakarze - kamizelki;
+}
+
 int main() {
     int kamizelki, kajakarze;
     cout << "Podaj ilość kajakarzy: ";
@@ -8,10 +12,10 @@ int main() {
     cout << "Podaj ilość kamizelek: ";
     cin >> kamizelki;
 
-    if (kamizelki < kajakarze) {
-        cout << "Uwaga, za mało kamizelek!" << endl;
-        cout << "Brakuje " << kajakarze - kamizelki << " kamizelek" << endl;
-    } else {
-        cout << "Wystarczy kamizelek" << endl;
-    }
+    try {
+        sprawdz_ilosc_kamizelek(kamizelki, kajakarze);
+        cout << "dobra ilosc kamizelek!" << endl;
+    } catch (int blad) {
+        cout << "Za malo kamizelek! Brakuje " << blad << " kamizelek" << endl;
+    } 
 }
